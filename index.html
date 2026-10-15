@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Petite ville 3D · Mission bus et drones</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="libraries/3d/three.min.js"></script>
+    <script src="libraries/3d/yuka.js"></script>
+    <script src="3d/circuit3d.js"></script>
+    <script src="3d/cityRoute3d.js"></script>
+    <script src="3d/building3d.js"></script>
+    <script src="3d/shop3d.js"></script>
+    <script src="3d/citySolids3d.js"></script>
+    <script src="3d/streetNetwork3d.js"></script>
+    <script src="3d/busStop3d.js"></script>
+    <script src="3d/passenger3d.js"></script>
+    <script src="3d/tree3d.js"></script>
+    <script src="3d/streetLamp3d.js"></script>
+    <script src="3d/fairground3d.js"></script>
+    <script src="3d/cityMap3d.js"></script>
+    <script src="3d/weightedSteering3d.js"></script>
+    <script src="3d/localSeparation3d.js"></script>
+    <script src="3d/chainFollow3d.js"></script>
+    <script src="3d/teacherAvoidance3d.js"></script>
+    <script src="3d/obstacle3d.js"></script>
+    <script src="3d/barrier3d.js"></script>
+    <script src="3d/police3d.js"></script>
+    <script src="3d/overtake3d.js"></script>
+    <script src="3d/roadContainment3d.js"></script>
+    <script src="3d/collisionSafety3d.js"></script>
+    <script src="3d/snakeHead3d.js"></script>
+    <script src="3d/snakeSegment3d.js"></script>
+    <script src="3d/snake3d.js"></script>
+    <script src="3d/trafficSteering3d.js"></script>
+    <script src="3d/trafficContacts3d.js"></script>
+    <script src="3d/trafficVehicle3d.js"></script>
+    <script src="3d/busService3d.js"></script>
+    <script src="3d/bus3d.js"></script>
+    <script src="3d/boidRules3d.js"></script>
+    <script src="3d/altitudeHold3d.js"></script>
+    <script src="3d/flockDrone3d.js"></script>
+    <script src="3d/streetNavigation3d.js"></script>
+    <script src="3d/townPerson3d.js"></script>
+    <script src="3d/robber3d.js"></script>
+    <script src="3d/incidentCar3d.js"></script>
+    <script src="3d/responseCar3d.js"></script>
+    <script src="3d/streetBarricade3d.js"></script>
+    <script src="3d/cityIncident3d.js"></script>
+    <script src="3d/world3d.js"></script>
+    <script src="3d/busMission3d.js"></script>
+    <script src="3d/vehicleCamera3d.js"></script>
+    <script src="3d/vehicleVisualState3d.js"></script>
+    <script src="3d/vehicleModel3d.js"></script>
+    <script src="3d/vehicleMirrors3d.js"></script>
+    <script src="3d/cityView3d.js"></script>
+    <script src="3d/cityAtmosphere3d.js"></script>
+    <script src="3d/cityLifeView3d.js"></script>
+    <script src="3d/cityActorsView3d.js"></script>
+    <script src="3d/scene3d.js"></script>
+    <script src="3d/app3d.js" defer></script>
+  </head>
+  <body class="mode-3d">
+    <button id="settings3d-toggle" type="button" aria-controls="controls" aria-expanded="true">☰ Réglages</button>
+    <aside id="controls" aria-label="Réglages des bus et des nuées">
+      <strong>Ville 3D · bus et nuées</strong>
+      <details open class="flock-controls">
+        <summary>Commerces · intervention</summary>
+        <p>Trois braqueurs · braquage de 30 s · trois voitures de police · barrages et déviation du trafic · poursuite vers la sortie Est.</p>
+        <div class="actions"><button id="start-incident" type="button">Lancer le braquage · H</button><button id="incident-camera" type="button">Voir la boutique</button><button id="chase-camera" type="button">Suivre la fuite</button></div>
+        <p id="incident-status" role="status">Commerces ouverts · clients en promenade</p>
+      </details>
+      <small class="engine-note">Yuka steering · Three.js</small>
+      <label for="bus-follow">Suivi du bus <output id="follow-value">2.0</output></label>
+      <input id="bus-follow" type="range" min="0" max="5" step="0.1" value="2">
+      <label for="bus-separation">Séparation du bus <output id="separation-value">2.5</output></label>
+      <input id="bus-separation" type="range" min="0" max="5" step="0.1" value="2.5">
+      <label for="bus-wander">Wander du bus <output id="wander-value">0.5</output></label>
+      <input id="bus-wander" type="range" min="0" max="5" step="0.1" value="0.5">
+      <label for="vehicle-select">Choisir une voiture ou un bus</label>
+      <select id="vehicle-select"><option value="">Choisir un véhicule…</option></select>
+      <p>Choisis dans la liste, puis utilise 1 ou 3. Au clic : vise la carrosserie sans glisser ; utilise Pause si nécessaire.</p>
+      <div class="actions">
+        <button id="add-bus" type="button">+ Bus · T</button>
+        <button id="pause" type="button" aria-pressed="false">Pause</button>
+        <button id="camera-reset" type="button">Vue 3D · 0</button>
+        <button id="camera-top" type="button">Vue du dessus</button>
+        <button id="camera-first" type="button">1ère personne · 1</button>
+        <button id="camera-third" type="button">3ème personne · 3</button>
+        <button id="camera-police-first" type="button">Policier 1ère · P</button>
+        <button id="camera-police-third" type="button">Policier 3ème · O</button>
+        <button id="camera-drone" type="button">Caméra drone · V</button>
+        <button id="next-drone" type="button">Drone suivant · N</button>
+      </div>
+      <p id="camera-status" role="status">Clique sur un véhicule, un policier ou sa barrière. 1 / 3 : véhicule · P / O : policier · 0 : vue libre.</p>
+      <p>En vue 1 : glisse la souris pour regarder dans l’habitacle. 3 : suivre de derrière · 0 : vue libre.</p>
+      <details open class="flock-controls">
+        <summary>Mission · Ligne des quatre quartiers</summary>
+        <p>Le bus conduit et freine vers chaque arrêt. Ouvre les portes avec Espace une fois immobilisé. Transporte les passagers et termine la tournée !</p>
+        <div class="actions"><button id="start-mission" type="button">Mission bus · M</button><button id="bus-doors" type="button">Portes · Espace</button></div>
+      </details>
+      <details class="flock-controls" open>
+        <summary>Nuées de drones · Boids</summary>
+        <label for="flock-align">Alignement <output id="flock-align-value">1.5</output></label>
+        <input id="flock-align" type="range" min="0" max="2" step="0.1" value="1.5">
+        <label for="flock-cohesion">Cohésion <output id="flock-cohesion-value">1.0</output></label>
+        <input id="flock-cohesion" type="range" min="0" max="2" step="0.1" value="1">
+        <label for="flock-separation">Séparation <output id="flock-separation-value">3.0</output></label>
+        <input id="flock-separation" type="range" min="0" max="15" step="0.1" value="3">
+        <div class="actions">
+          <button id="add-flock" type="button">+ Nuée · B</button>
+          <button id="clear-flocks" type="button">Retirer les nuées</button>
+        </div>
+        <p>Trois forces locales font vivre chaque groupe. D affiche les liens entre voisins.</p>
+        <span id="flock-count" role="status">18 drones</span>
+      </details>
+      <p>Clic véhicule : sélectionner · 1 / 3 : vue embarquée / poursuite · 0 : vue libre<br>Glisser : tourner la caméra<br>Molette : zoom · Clic sol : ajouter un véhicule<br>Maj + clic : ajouter une barrière et un policier<br>Dépassement : voiture devant à moins de 100 px<br><kbd>D</kbd> Debug : <span id="debug-state">désactivé</span></p>
+      <span id="bus-count" role="status">1 bus</span>
+      <span id="placement-status" role="status"></span>
+    </aside>
+    <main id="scene" aria-label="Simulation 3D de voitures, bus et nuées de drones"></main>
+    <div id="mission-hud" role="status"><strong>Ville vivante · 8 quartiers</strong><span id="mission-status">M : mission bus · V : caméra drone · N : drone suivant</span></div>
+    <p id="scene-error" role="alert" hidden></p>
+  </body>
+</html>
