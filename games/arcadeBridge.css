@@ -1,0 +1,6 @@
+html,body{overflow:hidden}
+#snake-panel-toggle,#snake-add-button{position:fixed;z-index:5;border:1px solid #779b9f;border-radius:8px;background:#102b32;color:#edfff8;font:600 12px system-ui;padding:10px;cursor:pointer}
+#snake-panel-toggle{top:10px;left:10px}#snake-add-button{bottom:10px;left:10px}
+body[data-arcade-engine="snake"] #controls{top:55px;max-height:calc(100dvh - 120px)}
+#snake-panel-toggle:focus-visible,#snake-add-button:focus-visible{outline:3px solid #ffe18f}
+button[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }

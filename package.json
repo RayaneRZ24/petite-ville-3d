@@ -5,8 +5,11 @@
   "description": "Petite ville 3D autonome avec trafic, bus, commerces, drones et intervention policière.",
   "scripts": {
     "start": "node scripts/serve.mjs",
-    "test": "node --test tests/*.test.mjs",
-    "test:quick": "node --test --test-skip-pattern=\"^chaussée|^intervention : trafic\" tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs games/seek/tests/*.test.mjs games/snake/tests/*.test.mjs",
+    "test:quick": "node --test --test-skip-pattern=\"^chaussée|^intervention : trafic\" tests/*.test.mjs games/seek/tests/*.test.mjs games/snake/tests/*.test.mjs",
+    "test:behaviors": "node --test tests/behaviorArcades.test.mjs games/seek/tests/*.test.mjs games/snake/tests/*.test.mjs"
   },
-  "engines": { "node": ">=22.13.0" }
+  "engines": {
+    "node": ">=22.13.0"
+  }
 }

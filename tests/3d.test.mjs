@@ -170,6 +170,10 @@ function app(width = 1200) {
   Object.assign(s.context, { document, performance: { now: () => 1000 }, innerWidth: width,
     addEventListener(name, callback) { events[name] = callback; },
     requestAnimationFrame(callback) { events.frame = callback; },
+    NeuralLabPortal3D: class { opened=false; },
+    VenueLife3D: class { update(){} },
+    CityAudio3D: class { update(){} suspend(){} },
+    Attractions3D: class { opened=false;ride=false;update(){} },
     Scene3D: class {
       constructor() { this.orbit = { yaw: .58, pitch: .7, distance: 74 }; }
       setCameraMode(mode) { this.cameraMode = mode; }
@@ -371,12 +375,26 @@ test('trafic : séparation active entre voitures, loin et à positions confondue
   a.separation.calculate(a, force.set(0, 0, 0)); assert.equal(force.length(), 0);
 });
 
-test('interface : six obstacles initiaux et debug sans changer la simulation', () => {
-  const a = app(); assert.equal(a.world.barriers.length, 6); assert.equal(a.world.police.length, 6);
+test('interface : trois postes organisés et debug sans changer la simulation', () => {
+  const a = app(); assert.equal(a.world.barriers.length, 3); assert.equal(a.world.police.length, 3);
   assert.equal(a.world.agents.length, 37);
   const before = a.world.agents.map(agent => agent.position.clone());
   a.events.keydown({ key: 'd' });
   assert.ok(a.world.agents.every((agent, i) => agent.position.equals(before[i])));
+});
+
+test('barrages ville : trois maximum, espacés sur des lignes droites et orientés avec la route',()=>{
+  const {world}=app();const count=world.obstacles.length;
+  for(const barrier of world.barriers){
+    const frame=world.circuit.frameAt(barrier.position),direction=new (scene().YUKA.Vector3)();
+    barrier.getDirection(direction);
+    assert.ok(Math.abs(frame.direction.x)<1e-8||Math.abs(frame.direction.z)<1e-8);
+    assert.ok(direction.dot(frame.direction)>.999);
+    assert.ok(Math.abs(barrier.position.distanceTo(frame.point)-1.6)<1e-8);
+    for(const other of world.barriers)if(other!==barrier)assert.ok(barrier.position.distanceTo(other.position)>15);
+  }
+  assert.equal(world.addObstacle(world.circuit.spawn(55).point),null);
+  assert.equal(world.barriers.length,3);assert.equal(world.police.length,3);assert.equal(world.obstacles.length,count);
 });
 
 test('interface : Maj + clic crée un obstacle, clic crée une voiture, glisser tourne seulement la caméra', () => {

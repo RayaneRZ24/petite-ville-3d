@@ -1,0 +1,10 @@
+html, body { margin: 0; padding: 0; font-family: system-ui, sans-serif; background: #df202b; }
+canvas { display: block; max-width: 100%; }
+#controls { position: fixed; top: 12px; left: 12px; z-index: 1; width: min(275px, calc(100vw - 48px)); padding: 16px; border-radius: 12px; background: #101010ed; color: white; box-shadow: 0 4px 16px #0003; max-height: calc(100dvh - 56px); overflow-y: auto; }
+#controls strong { display: block; margin-bottom: 14px; }
+#controls label { display: flex; justify-content: space-between; margin-top: 10px; font-size: 13px; }
+#controls input { width: 100%; min-height: 28px; accent-color: white; cursor: pointer; }
+#controls output, #snake-count { color: white; font-variant-numeric: tabular-nums; }
+#controls p { line-height: 1.6; font-size: 12px; color: #d0d0d0; }
+#controls kbd { font: inherit; color: white; }
+#controls :focus-visible { outline: 2px solid #ffe190; outline-offset: 2px; }

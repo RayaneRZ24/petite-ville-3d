@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Neuro Racing — laboratoire de pilotes</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="lab.css">
+  <script src="../libraries/3d/three.min.js"></script>
+  <script src="../libraries/3d/yuka.js"></script>
+  <script src="../libraries/3d/tf.min.js"></script>
+  <script src="Vector2.js"></script>
+  <script src="core/StudyConfig.js"></script>
+  <script src="core/StudyRandom.js"></script>
+  <script src="core/Geometry.js"></script>
+  <script src="core/NeuralNetwork.js"></script>
+  <script src="core/Ray.js"></script>
+  <script src="Boundary.js"></script>
+  <script src="core/Track.js"></script>
+  <script src="core/Circuit.js"></script>
+  <script src="core/CircuitFactory.js"></script>
+  <script src="core/LapRules.js"></script>
+  <script src="NeuralSteering3D.js"></script>
+  <script src="NeuralCar3D.js"></script>
+  <script src="core/Genetic.js"></script>
+  <script src="core/ExperimentArchive.js"></script>
+  <script src="core/BrainBank.js"></script>
+  <script src="core/StudySession.js"></script>
+  <script src="RaceResult.js"></script>
+  <script src="core/LabUI.js"></script>
+  <script src="../3d/venueProp3d.js"></script>
+  <script src="../3d/stadiumVenueView3d.js"></script>
+  <script src="CircuitView3D.js"></script>
+  <script src="savedCampaignData.js"></script>
+  <script src="savedPilots.js"></script>
+  <script src="main.js"></script>
+</head>
+<body>
+  <header class="masthead"><a class="brand" href="#"><span class="brand-mark">N↗</span><span>NEURO<span class="brand-light">RACING</span><small>LABORATOIRE DE PILOTES · 9B</small></span></a><div class="mast-note"><button id="return-city" type="button">Retour à la ville · Échap</button> <span class="status-dot"></span>RÉSEAUX NEURONAUX · ÉVOLUTION GÉNÉTIQUE</div><button id="menu-toggle" aria-controls="ui" aria-expanded="true">Réglages ☰</button></header>
+  <div class="workspace">
+    <aside id="ui" aria-label="Configuration des expériences">
+      <div class="panel-heading"><span class="eyebrow">01 / EXPÉRIENCE</span><h1>Construis ton pilote.</h1><p>Des capteurs, un cerveau, trois tours.<br>La réussite doit être collective.</p></div>
+      <label for="mode">Mode de session</label><select id="mode"><option value="training">Entraînement génétique</option><option value="race">Course de pilotes</option></select>
+      <section class="settings-section"><h2><span>01</span> Circuit</h2>
+        <label for="track-type">Famille de tracé</label><select id="track-type"></select>
+        <div class="two-fields"><div><label for="track-seed">Graine du circuit</label><input id="track-seed" type="number" min="1" max="4294967295" value="42"></div><button id="new-seed" class="secondary align-end">Nouvelle graine ↻</button></div>
+        <label for="widthSlider">Largeur <output id="widthVal">90 px</output></label><input type="range" id="widthSlider" min="45" max="130" value="90" step="5">
+        <label for="diffSlider">Complexité <output id="diffVal">12</output></label><input type="range" id="diffSlider" min="1" max="50" value="12" step="1">
+        <button id="regenerate" class="secondary full">Régénérer le circuit</button><p class="help">Change le tracé sans effacer les résultats. Un essai interrompu n’est pas classé.</p>
+      </section>
+      <section class="settings-section"><h2><span>02</span> Capteurs & mouvement</h2>
+        <label for="ray-count">Nombre de rayons <output id="ray-count-value">7</output></label><input type="range" id="ray-count" min="1" max="19" value="7" step="1">
+        <label for="ray-length">Longueur des rayons <output id="ray-length-value">180 px</output></label><input type="range" id="ray-length" min="40" max="600" value="180" step="10">
+        <label for="max-accel">Accélération max <output id="max-accel-value">0.40</output></label><input type="range" id="max-accel" min="0.05" max="1.5" value="0.4" step="0.05">
+        <label for="speedSlider">Vitesse max <output id="speedVal">5</output></label><input type="range" id="speedSlider" min="2" max="12" value="5" step="0.5">
+      </section>
+      <section class="settings-section"><h2><span>03</span> Architecture du cerveau</h2>
+        <label for="hidden-count">Couches cachées <output id="hidden-count-value">1</output></label><input type="range" id="hidden-count" min="0" max="5" value="1" step="1">
+        <div id="layer-controls"></div><div id="architecture" class="architecture" aria-live="polite"></div><p class="help">Entrées : rayons + vitesse. Sorties : direction + vitesse souhaitée. Chaque couche se règle séparément.</p>
+      </section>
+      <section class="settings-section"><h2><span>04</span> Population & apprentissage</h2>
+        <label for="population">Voitures <output id="population-value">24</output></label><input type="range" id="population" min="2" max="80" value="24" step="1">
+        <label for="mutation">Mutation <output id="mutation-value">12 %</output></label><input type="range" id="mutation" min="0" max="0.5" value="0.12" step="0.01">
+        <label for="generation-budget">Générations par tentative <output id="generation-budget-value">30</output></label><input type="range" id="generation-budget" min="1" max="300" value="30" step="1">
+        <label for="brain-seed">Graine d’apprentissage</label><input id="brain-seed" type="number" min="1" max="4294967295" value="42">
+        <button id="apply-settings" class="secondary full">Appliquer les réglages</button><p id="settings-state" class="help" role="status">Réglages appliqués. Toute modification exige un redémarrage.</p>
+      </section>
+      <section class="settings-section"><h2><span>05</span> Banque de pilotes</h2>
+        <label for="brain-select">Cerveau à charger / tester</label><select id="brain-select"><option value="">Champion de la session</option></select>
+        <button id="load-brain" class="secondary full">Charger le cerveau et ses réglages</button>
+        <div class="two-fields"><div><label for="driver-name">Nom du pilote</label><input id="driver-name" maxlength="32" value="Pilote 1"></div><button id="save-brain" class="secondary align-end">Sauvegarder</button></div>
+        <p id="brain-info" class="help">Les cerveaux enregistrés restent disponibles après rechargement.</p>
+      </section>
+      <section id="race-options" class="settings-section" hidden><h2><span>06</span> Pilotes de la course</h2><p class="help">Chaque pilote garde son réseau. Les modèles doivent avoir le même nombre de rayons que le réglage actif. Sans modèle choisi, son cerveau est aléatoire et non entraîné.</p><div id="pilot-controls"></div></section>
+      <div class="settings-section tools"><button id="export-study" class="secondary">Exporter les essais ↓</button><label class="file-button" for="import-study">Importer ↑</label><input id="import-study" type="file" accept="application/json,.json" hidden></div>
+    </aside>
+    <main>
+      <section class="experiment-bar"><div><span class="eyebrow">PISTE D’ESSAI / <span id="track-id">—</span></span><h2 id="track-title">Ovale école</h2></div><div class="run-actions"><button id="return-city-small" type="button" class="secondary">Retour ville</button><button id="test-brain" class="secondary">Tester le cerveau figé</button><button id="start" class="primary">Démarrer l’entraînement ↗</button><button id="pause" class="icon-button" aria-pressed="false">Pause</button></div></section>
+      <section class="metrics" aria-label="Mesures de la session"><div><span>GÉNÉRATION</span><strong id="generation-stat">—</strong></div><div><span>ONT TERMINÉ 3 TOURS</span><strong id="success-stat">0 / 24</strong></div><div><span>MEILLEUR / OBJECTIF</span><strong id="laps-stat">0 / 3</strong></div><div><span>ÉCHECS DE TENTATIVE</span><strong id="attempt-stat">0 / 4</strong></div><div><span>TEMPS SIMULÉ</span><strong id="time-stat">0.0 s</strong></div></section>
+      <section class="track-stage"><div id="canvas-container" aria-label="Circuit et voitures neuronales"></div><div class="track-caption"><span id="run-state">PRÊT</span><span>CAPTEURS → RÉSEAU → FORCE → MOUVEMENT</span></div><div id="completion-banner" hidden></div></section>
+      <section class="playback"><button id="lab-camera" class="secondary" type="button">Vue dessus / perspective</button><label class="check"><input id="show-rays" type="checkbox" checked>Capteurs du leader</label><label class="check"><input id="show-gates" type="checkbox">Checkpoints</label><label for="sim-speed">Accélération du temps <output id="sim-speed-value">1×</output></label><input id="sim-speed" type="range" min="1" max="40" value="1" step="1"></section>
+      <p id="session-message" class="session-message" role="status" aria-live="polite">Initialisation de TensorFlow.js…</p><p id="storage-message" class="help" role="status"></p>
+      <div class="analysis-row"><section class="chart-panel"><span class="eyebrow">PROGRESSION / GÉNÉRATION</span><svg id="history-chart" viewBox="0 0 600 100" role="img" aria-label="Pourcentage de la population ayant terminé trois tours"><path d="M0 90H600 M0 50H600 M0 10H600" stroke="#26394a" fill="none"/><polyline id="history-line" points="" fill="none" stroke="#61dcb0" stroke-width="2"/></svg><small id="history-caption">Une courbe de réussite réelle, sans aide au pilotage.</small></section><section class="leaderboard"><span class="eyebrow">CLASSEMENT DES PILOTES</span><ol id="leaderboard"></ol></section></div>
+      <section class="archive-heading"><div><span class="eyebrow">BIBLIOTHÈQUE D’EXPÉRIENCES</span><h2>Un tracé. Plusieurs verdicts.</h2></div><p>Même géométrie, mêmes réglages, même cerveau.<br>40 contextes conservés · 4 échecs pour classer un circuit tuant.</p></section>
+      <div class="archive-grid"><section class="archive winning"><h3><span class="archive-dot"></span>Circuits gagnants <span id="winning-count">0</span></h3><p class="help">Chaque voiture a réellement terminé au moins trois tours.</p><div id="winning-list" class="archive-list"></div></section><section class="archive killing"><h3><span class="archive-dot"></span>Circuits tuants <span id="killing-count">0</span></h3><p class="help">Plus de trois tentatives ont échoué pour ce contexte.</p><div id="killing-list" class="archive-list"></div></section></div>
+      <details class="pending"><summary id="pending-summary">Essais en attente de classement</summary><div id="pending-list" class="archive-list"></div></details>
+      <footer>Neuroévolution de l’exemple du professeur · TensorFlow.js CPU et Yuka locaux · Les voitures sont évaluées indépendamment sur les bordures.</footer>
+    </main>
+  </div>
+</body>
+</html>

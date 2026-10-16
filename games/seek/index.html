@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seek — poursuite hypnotique</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/webaudiox/audio.js"></script>
+    <script src="libraries/webaudiox/jsfx.js"></script>
+    <script src="libraries/webaudiox/jsfxlib.js"></script>
+    <script src="libraries/webaudiox/webaudiox.jsfx.js"></script>
+    <script src="vehicle.js"></script>
+    <script src="population.js"></script>
+    <script src="fleeBehavior.js"></script>
+    <script src="follower.js"></script>
+    <script src="targetAvoidance.js"></script>
+    <script src="targetMotion.js"></script>
+    <script src="target.js"></script>
+    <script src="fleeingTargetBehavior.js"></script>
+    <script src="targetFutante.js"></script>
+    <script src="targetPopulation.js"></script>
+    <script src="missile.js"></script>
+    <script src="missileTarget.js"></script>
+    <script src="decoy.js"></script>
+    <script src="explosion.js"></script>
+    <script src="missileScenario.js"></script>
+    <script src="scenarios.js"></script>
+    <script src="arrivalRules.js"></script>
+    <script src="hypnoticBackground.js"></script>
+    <script src="frequencyModulation.js"></script>
+    <script src="hypnoticAudio.js"></script>
+    <script src="captureAudio.js"></script>
+    <script src="missileAudio.js"></script>
+    <script src="settingsPanel.js"></script>
+    <script src="sketch.js"></script>
+  <link rel="stylesheet" href="../arcadeBridge.css">
+    <script src="../arcadeBridge.js" defer></script>
+  </head>
+  <body data-arcade-engine="seek">
+    <button id="settings-toggle" type="button" aria-controls="controls" aria-expanded="false">☰ Réglages</button>
+    <div id="scene-info">
+      <span id="scenario-name">1 — Poursuite</span>
+      <span>Cibles <strong id="target-count-value">1 / 24</strong> · <span id="score-label">Meilleur vaisseau</span> <strong id="best-xp-value">0</strong><span id="score-unit"> XP</span></span>
+    </div>
+    <button id="settings-backdrop" type="button" aria-label="Fermer les réglages" tabindex="-1" hidden></button>
+    <aside id="controls" role="dialog" aria-modal="true" aria-labelledby="settings-title" aria-hidden="true" inert>
+      <div class="panel-heading"><div><small>SEEK LAB</small><h1 id="settings-title">Réglages</h1></div><button id="settings-close" type="button" aria-label="Fermer les réglages">✕</button></div>
+      <p class="hint">Ajuste la scène, puis referme le panneau pour profiter de l’animation.</p>
+      <span class="control-group">
+        <label for="scenario-select">Scénario :</label>
+        <select id="scenario-select">
+          <option value="pursuit">1 — Poursuite et réapparition des vaisseaux</option>
+          <option value="endurance">2 — Fuite et duplication</option>
+          <option value="targetRespawn">3 — Variante : la cible réapparaît</option>
+          <option value="flee">4 — Variante : les vaisseaux fuient</option>
+          <option value="missile">5 — Missile, cibles et leurres</option>
+        </select>
+      </span>
+      <span id="missile-controls" hidden>
+        <span class="control-group" id="decoy-capacity-control">
+          <label for="decoy-capacity">Capacité de leurres :</label>
+          <output id="decoy-capacity-value" for="decoy-capacity">100 / cible</output>
+        </span>
+        <span class="control-group" id="decoy-lifetime-control">
+          <label for="decoy-lifetime">Durée de vie des leurres :</label>
+          <output id="decoy-lifetime-value" for="decoy-lifetime">2.0 s</output>
+        </span>
+        <span class="control-group">
+          <button id="missile-audio-toggle" type="button" aria-pressed="false">Activer les effets missile</button>
+          <label for="missile-audio-volume">Volume des effets :</label>
+          <input id="missile-audio-volume" type="range" min="0" max="100" step="1" value="32">
+          <output id="missile-audio-volume-value" for="missile-audio-volume">32 %</output>
+        </span>
+        <p class="hint" id="missile-audio-status" role="status">WebAudiox génère localement fuite, alarme, largage et explosion. Active les sons par un clic.</p>
+        <p class="hint">Stocks restants : <strong id="missile-stock-value">100 · 100 · 100 · 100</strong>. Une cible détecte le missile à 230 px, libère jusqu’à 10 leurres et fuit jusqu’à 340 px.</p>
+      </span>
+      <div id="standard-controls">
+      <span class="control-group">
+        <label for="vehicle-count">Véhicules :</label>
+        <input id="vehicle-count" type="range" min="1" max="200" step="1" value="20">
+        <output id="vehicle-count-value" for="vehicle-count">20 / 200</output>
+      </span>
+      <span class="control-group" id="max-speed-control">
+        <label for="max-speed">Vitesse max :</label>
+        <output id="max-speed-value" for="max-speed">10</output>
+      </span>
+      <span class="control-group" id="max-force-control">
+        <label for="max-force">Force max :</label>
+        <output id="max-force-value" for="max-force">0.10</output>
+      </span>
+      <span id="endurance-controls" hidden>
+        <span class="control-group" id="detection-control">
+          <label for="detection-radius">Rayon de détection :</label>
+          <output id="detection-value" for="detection-radius">200 px</output>
+        </span>
+        <span class="control-group" id="endurance-control">
+          <label for="endurance-duration">Fuite avant duplication :</label>
+          <output id="endurance-value" for="endurance-duration">3.0 s</output>
+        </span>
+        <span class="hint">Une fuite continue complète crée un clone, puis la cible récupère. Une capture ou une sortie de portée à 300 px interrompt la série. Maximum : 24 cibles.</span>
+      </span>
+      <p class="hint">Chaque capture donne +10 XP. Le vaisseau grandit progressivement et conserve son XP après réapparition.</p>
+      <h2>Ambiance</h2>
+      <span class="control-group" id="gradient-speed-control">
+        <label for="gradient-speed">Vitesse du dégradé :</label>
+        <output id="gradient-speed-value" for="gradient-speed">0.35</output>
+      </span>
+      <span class="control-group" id="gradient-intensity-control">
+        <label for="gradient-intensity">Intensité :</label>
+        <output id="gradient-intensity-value" for="gradient-intensity">0.75</output>
+      </span>
+      <span class="control-group">
+        <button id="music-toggle" type="button" aria-pressed="false">Activer la musique</button>
+        <label for="music-volume">Volume :</label>
+        <input id="music-volume" type="range" min="0" max="100" step="1" value="35">
+        <output id="music-volume-value" for="music-volume">35 %</output>
+      </span>
+      <h2>Captures</h2>
+      <span class="control-group">
+        <button id="capture-sound-toggle" type="button" aria-pressed="false">Activer Monster Kill</button>
+        <label for="capture-volume">Volume de l’effet :</label>
+        <input id="capture-volume" type="range" min="0" max="100" step="1" value="55">
+        <output id="capture-volume-value" for="capture-volume">55 %</output>
+      </span>
+      <p class="hint" id="capture-sound-status" role="status">Active l’effet pour l’écouter et autoriser son déclenchement aux captures. Les captures rapprochées partagent le son en cours.</p>
+      <p class="hint">Cercle blanc toujours visible. En scénario 2, le cercle de détection est jaune, rouge si un vaisseau est à l’intérieur. Touche D : debug <span id="debug-state">désactivé</span>, affiche aussi la sortie de portée à 300 px.</p>
+      <p class="hint">La souris règle la FM et le centre du dégradé : gauche → droite = vitesse <span id="fm-rate-value">6.13 Hz</span> ; bas → haut = profondeur <span id="fm-depth-value">40.0 Hz</span>. <span id="music-status" role="status">Clique sur « Activer la musique » pour démarrer le son.</span></p>
+      </div>
+    </aside>
+    <main id="scene" aria-label="Simulation de véhicules poursuivant ou fuyant une cible autonome"></main>
+  </body>
+</html>

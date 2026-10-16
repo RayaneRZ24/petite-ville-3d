@@ -1,0 +1,407 @@
+[
+  {
+    "file": "games/seek/ANALYSE.md",
+    "source": "1-Seek/ANALYSE.md",
+    "sha256": "fd9e3e5aa25ffd0f2c7525790f02dd23d2257ed7eeb9b933980967c4c42724e2"
+  },
+  {
+    "file": "games/seek/arrivalRules.js",
+    "source": "1-Seek/arrivalRules.js",
+    "sha256": "350ee3d2b10ec978b72c327bea5b8fd1667d5ac77f2499b8fe3d900cc055d7bd"
+  },
+  {
+    "file": "games/seek/audio.js",
+    "source": "1-Seek/audio.js",
+    "sha256": "0f051d52bd3523987d901aaf76b0b1adf0e16cb57f15a3d8750747f80137561a"
+  },
+  {
+    "file": "games/seek/captureAudio.js",
+    "source": "1-Seek/captureAudio.js",
+    "sha256": "b96964b5439a1337d9b692e16be2eebadcc288f7833c75ecdf4d8638dcf8c3e2"
+  },
+  {
+    "file": "games/seek/decoy.js",
+    "source": "1-Seek/decoy.js",
+    "sha256": "5c28190f52335e2f7cbf95e813f7c54039e38d8cf277674abf5276e25134f8f8"
+  },
+  {
+    "file": "games/seek/effectsAudio.js",
+    "source": "1-Seek/effectsAudio.js",
+    "sha256": "3a47ef285a1aa626d023c2675d9a968fc7af214c0e5b6a6f0cb9a927c4066ff2"
+  },
+  {
+    "file": "games/seek/EXO1_SPECIFICATION.md",
+    "source": "1-Seek/EXO1_SPECIFICATION.md",
+    "sha256": "9cf1407b396eed11baa7858fd6256955bfc81b592f61620b7a252dd0dbaa3aa1"
+  },
+  {
+    "file": "games/seek/explosion.js",
+    "source": "1-Seek/explosion.js",
+    "sha256": "255ca3555f905b182be616de925c9b7d46488fa8e9e6395cbe8f8e38ed2acf09"
+  },
+  {
+    "file": "games/seek/fleeBehavior.js",
+    "source": "1-Seek/fleeBehavior.js",
+    "sha256": "3dbddca1a4beb9b0468cc368c40f55f112252e109a8c11819ce5ef08ee2ca2dd"
+  },
+  {
+    "file": "games/seek/fleeingTargetBehavior.js",
+    "source": "1-Seek/fleeingTargetBehavior.js",
+    "sha256": "c8319964adb87abfb2e6735483698f73dc06b8c7d78f274361724a1c05821ff0"
+  },
+  {
+    "file": "games/seek/follower.js",
+    "source": "1-Seek/follower.js",
+    "sha256": "8374a46262618dcf548d600dd3b265f8722896add266fc183dec9284f954e4bf"
+  },
+  {
+    "file": "games/seek/frequencyModulation.js",
+    "source": "1-Seek/frequencyModulation.js",
+    "sha256": "0de32176d17f555c38e7007d66654ae8904000388788617b759ae970f45db8a3"
+  },
+  {
+    "file": "games/seek/hypnoticAudio.js",
+    "source": "1-Seek/hypnoticAudio.js",
+    "sha256": "66a53e2e99f77852050aa703bfbc94368556f5fc11aa073dbaaab8eb0b813ec6"
+  },
+  {
+    "file": "games/seek/hypnoticBackground.js",
+    "source": "1-Seek/hypnoticBackground.js",
+    "sha256": "a8c3c99104f43925fd20a3c60ba0c61e4c728e1dc316639cf02ca88ccdbe098d"
+  },
+  {
+    "file": "games/seek/index.html",
+    "source": "1-Seek/index.html",
+    "sha256": "f855ccf20844b1bd63077348267d2acad55f988a7c5c9ce9717027f319b75536"
+  },
+  {
+    "file": "games/seek/jsconfig.json",
+    "source": "1-Seek/jsconfig.json",
+    "sha256": "2dbc50abf2c9f698fe929238ff235aaf4e122a0b54d99c6e2acfee5292e2b6d4"
+  },
+  {
+    "file": "games/seek/missile.js",
+    "source": "1-Seek/missile.js",
+    "sha256": "03f8f50b0ff728d421a11930b50b73f6011b5112b605f4bfb6d4a975f24ce6b3"
+  },
+  {
+    "file": "games/seek/missileAudio.js",
+    "source": "1-Seek/missileAudio.js",
+    "sha256": "8809de99d22676c24508bdabd70586afde3ff28b49e0e99463573406a05dbb63"
+  },
+  {
+    "file": "games/seek/missileScenario.js",
+    "source": "1-Seek/missileScenario.js",
+    "sha256": "39c6a28b44f4134d6ab4a977715ee67b8ba5f37b12dd62a7afc629579fb8c3b3"
+  },
+  {
+    "file": "games/seek/missileTarget.js",
+    "source": "1-Seek/missileTarget.js",
+    "sha256": "9792e5463aa7bdd865f6c000d6de1a6bafdeaeda684bbd68a524a700cb16fbc1"
+  },
+  {
+    "file": "games/seek/mouseTarget.js",
+    "source": "1-Seek/mouseTarget.js",
+    "sha256": "c0498fcfa1acc435c6143d38ccdcb9cf8c59f61784ed08f3fa940aaa146e3922"
+  },
+  {
+    "file": "games/seek/population.js",
+    "source": "1-Seek/population.js",
+    "sha256": "ab7a611af0e64cb67c6e4725a1b4ed84005d9a58637ff414b03c3817150b8237"
+  },
+  {
+    "file": "games/seek/README.md",
+    "source": "1-Seek/README.md",
+    "sha256": "b8a89ff2bda8724073107bebba82c41a035d9ac8874922097e344ce18ffb9d5f"
+  },
+  {
+    "file": "games/seek/scenarios.js",
+    "source": "1-Seek/scenarios.js",
+    "sha256": "8cf7a0e4e46ea5d9df859cdf1636757bd76404db733f190f8744eec35b663554"
+  },
+  {
+    "file": "games/seek/seekVehicle.js",
+    "source": "1-Seek/seekVehicle.js",
+    "sha256": "c9e7b1291ef5805655affd2ba1a029d621d3f984267976ea1fff7fdc2ff9a3f7"
+  },
+  {
+    "file": "games/seek/settingsPanel.js",
+    "source": "1-Seek/settingsPanel.js",
+    "sha256": "d22d32dd9d3807a3a910b246e478a98652a295c8b0e108ecfb29957fd3db4547"
+  },
+  {
+    "file": "games/seek/sketch.js",
+    "source": "1-Seek/sketch.js",
+    "sha256": "31a020c99a75b12cd0640e1bc56305d198c380febaad5b30c6b4cff516214744"
+  },
+  {
+    "file": "games/seek/style.css",
+    "source": "1-Seek/style.css",
+    "sha256": "84e7ff03c73f3c55844f1757b44eb34c65578bd35c12b1f53d18ee757099fdeb"
+  },
+  {
+    "file": "games/seek/target.js",
+    "source": "1-Seek/target.js",
+    "sha256": "314a84cb30ffbf61159ef41fcb88c91d4486d8b7640f80153b85a1f9d36625ca"
+  },
+  {
+    "file": "games/seek/targetAvoidance.js",
+    "source": "1-Seek/targetAvoidance.js",
+    "sha256": "26376080261a32d95f44524f5bf34adff064b5226474383a5c99390bd893b10c"
+  },
+  {
+    "file": "games/seek/targetFutante.js",
+    "source": "1-Seek/targetFutante.js",
+    "sha256": "8fded0867055538076c2f5ddf61315d578927e1297081dacf7ff7583bfc66f6b"
+  },
+  {
+    "file": "games/seek/targetMotion.js",
+    "source": "1-Seek/targetMotion.js",
+    "sha256": "63dabe2bd0ccf6283bde96705c190d3737ec22149f6c1c62f3dd61ddbb2638a5"
+  },
+  {
+    "file": "games/seek/targetPopulation.js",
+    "source": "1-Seek/targetPopulation.js",
+    "sha256": "255de808819515fb1a04a0161c1a132cb278658e11a45dfb9d5c83aac292e753"
+  },
+  {
+    "file": "games/seek/test.js",
+    "source": "1-Seek/test.js",
+    "sha256": "cd9d60a1dfb57ab6283a1edbfead89c3a32099cf9fb173ea9dbaebf9fe4cdb06"
+  },
+  {
+    "file": "games/seek/vehicle.js",
+    "source": "1-Seek/vehicle.js",
+    "sha256": "bdc7c0e5124cb20a5ea17d7e5c82fcae49d378d1a573eb1e262c03d4403526c0"
+  },
+  {
+    "file": "games/seek/assets/monster-kill.m4a",
+    "source": "1-Seek/assets/monster-kill.m4a",
+    "sha256": "cd844825d00a439f2f191bb15766fcf5d66454887d56c2cd835d15dd87bfe158"
+  },
+  {
+    "file": "games/seek/assets/README.md",
+    "source": "1-Seek/assets/README.md",
+    "sha256": "d028e249714221f76b6b765dfcf368cf5addb686ccb010379edc434a1c6fba11"
+  },
+  {
+    "file": "games/seek/libraries/audio.js",
+    "source": "1-Seek/libraries/audio.js",
+    "sha256": "46d2ace549122f3d6420a752422da48072735ad35bb48a6a38f1f068eb14010a"
+  },
+  {
+    "file": "games/seek/libraries/jsfx.js",
+    "source": "1-Seek/libraries/jsfx.js",
+    "sha256": "ca2eb3998db06e4b792e8ec59c908ca6e18aa09ff362aeac39795c13cdd1980e"
+  },
+  {
+    "file": "games/seek/libraries/jsfxlib.js",
+    "source": "1-Seek/libraries/jsfxlib.js",
+    "sha256": "455d2cf4fb413eb82a54ed681d9568624c7919959a06681c7955cc9d4dfd0c7d"
+  },
+  {
+    "file": "games/seek/libraries/p5.min.js",
+    "source": "1-Seek/libraries/p5.min.js",
+    "sha256": "e358e14c1c032fda4688e91cc62b0d9b2add116ef1ad1b619f3021107d7bd79d"
+  },
+  {
+    "file": "games/seek/libraries/p5.sound.min.js",
+    "source": "1-Seek/libraries/p5.sound.min.js",
+    "sha256": "53b7c5243c249f47462dfcfcf6ab229c3dabf23ac900f3ecaa26a39e8488bfe2"
+  },
+  {
+    "file": "games/seek/libraries/webaudiox.js",
+    "source": "1-Seek/libraries/webaudiox.js",
+    "sha256": "244dc71d2243f575b246c4da6b9c2ffb4c3f74dcf7f0edc515a2013ce0527ee9"
+  },
+  {
+    "file": "games/seek/libraries/webaudiox/audio.js",
+    "source": "1-Seek/libraries/webaudiox/audio.js",
+    "sha256": "46d2ace549122f3d6420a752422da48072735ad35bb48a6a38f1f068eb14010a"
+  },
+  {
+    "file": "games/seek/libraries/webaudiox/jsfx.js",
+    "source": "1-Seek/libraries/webaudiox/jsfx.js",
+    "sha256": "ca2eb3998db06e4b792e8ec59c908ca6e18aa09ff362aeac39795c13cdd1980e"
+  },
+  {
+    "file": "games/seek/libraries/webaudiox/jsfxlib.js",
+    "source": "1-Seek/libraries/webaudiox/jsfxlib.js",
+    "sha256": "455d2cf4fb413eb82a54ed681d9568624c7919959a06681c7955cc9d4dfd0c7d"
+  },
+  {
+    "file": "games/seek/libraries/webaudiox/MIT-LICENSE.txt",
+    "source": "1-Seek/libraries/webaudiox/MIT-LICENSE.txt",
+    "sha256": "05f61246d5a9c638bd9b71723466bcab1615983adc35be7d80b12c9db61f6c3b"
+  },
+  {
+    "file": "games/seek/libraries/webaudiox/webaudiox.jsfx.js",
+    "source": "1-Seek/libraries/webaudiox/webaudiox.jsfx.js",
+    "sha256": "8a0cacbaca6c9b1464b0810c259466c2063a40838c83afc0add98386786ce6df"
+  },
+  {
+    "file": "games/seek/tests/audio-browser.html",
+    "source": "1-Seek/tests/audio-browser.html",
+    "sha256": "360baa8491cc1018c1d77bc4f8de59587595383010725f77bc3f396d9448a257"
+  },
+  {
+    "file": "games/seek/tests/audio.test.mjs",
+    "source": "1-Seek/tests/audio.test.mjs",
+    "sha256": "f4923b74004e129b7df9713756c0c8baa87999ffe9743cc661d0018e99299c2d"
+  },
+  {
+    "file": "games/seek/tests/autonomous.test.mjs",
+    "source": "1-Seek/tests/autonomous.test.mjs",
+    "sha256": "b59a3e66f42c4de6950699ede52945ab47119383e0b21f029e07d2e1908706d2"
+  },
+  {
+    "file": "games/seek/tests/captureAudio.test.mjs",
+    "source": "1-Seek/tests/captureAudio.test.mjs",
+    "sha256": "d021042e878ab41da4a62f1ccb0ac9072af98e20fba9e9d72c72278f4f068e76"
+  },
+  {
+    "file": "games/seek/tests/effectsAudio.test.mjs",
+    "source": "1-Seek/tests/effectsAudio.test.mjs",
+    "sha256": "e234d7d96a01f98b103c8b274469ffafd6352a55e23e39124ebffb2f64833389"
+  },
+  {
+    "file": "games/seek/tests/endurance.test.mjs",
+    "source": "1-Seek/tests/endurance.test.mjs",
+    "sha256": "684609fe10f8238a26f821cbc3ccb88724cbd5ab95ac4c1abdcd2303de2fde77"
+  },
+  {
+    "file": "games/seek/tests/frequencyModulation.test.mjs",
+    "source": "1-Seek/tests/frequencyModulation.test.mjs",
+    "sha256": "2cde71c3ac2632c7964c864c30c521c0a511ef3290228d61dbff1b74bc1ce74c"
+  },
+  {
+    "file": "games/seek/tests/missileAudio.test.mjs",
+    "source": "1-Seek/tests/missileAudio.test.mjs",
+    "sha256": "f20ae8b1099f9505891471cec6e3fc28d5a2f820c9d6fb46b0e0f841b2e3367e"
+  },
+  {
+    "file": "games/seek/tests/missileScenario.test.mjs",
+    "source": "1-Seek/tests/missileScenario.test.mjs",
+    "sha256": "5d17bb2d52369feaf49f75536e6f6134e02e495b9a9687e79d26ea1f9c1d5ec0"
+  },
+  {
+    "file": "games/seek/tests/population.test.mjs",
+    "source": "1-Seek/tests/population.test.mjs",
+    "sha256": "3fb59e305f0040ec380f87a3a9e9aee653682937eab177c97e044e6e5064856a"
+  },
+  {
+    "file": "games/seek/tests/progression.test.mjs",
+    "source": "1-Seek/tests/progression.test.mjs",
+    "sha256": "4705896df912f12086914cba14cf7659ec4c010726db5b9d30c1e845d5f0a9ca"
+  },
+  {
+    "file": "games/seek/tests/settingsPanel.test.mjs",
+    "source": "1-Seek/tests/settingsPanel.test.mjs",
+    "sha256": "7d8b450a3225f135c760b944846a5980d779b5273417f8d74760e451495f0045"
+  },
+  {
+    "file": "games/seek/tests/sketch.test.mjs",
+    "source": "1-Seek/tests/sketch.test.mjs",
+    "sha256": "d4b9d93a9bc1d3ea1665cc2b40dd378f1040b290a29607b05427d93f06987610"
+  },
+  {
+    "file": "games/seek/tests/targetAvoidance.test.mjs",
+    "source": "1-Seek/tests/targetAvoidance.test.mjs",
+    "sha256": "87403f81bfc7b64d4e89d5bebbcef7e5e7cca394566c82456052102623f06af3"
+  },
+  {
+    "file": "games/seek/tests/visuals.test.mjs",
+    "source": "1-Seek/tests/visuals.test.mjs",
+    "sha256": "3550f0384b3ba0157ae0a22b35ff6c8991b8f02e920bac9ace151489bc512423"
+  },
+  {
+    "file": "games/snake/index-2d.html",
+    "source": "5-3-PathFollowingComplex/index-2d.html",
+    "sha256": "c4b720af505df8d48c94fdedb70b98336e973c5189947d0b514869b2394860e6"
+  },
+  {
+    "file": "games/snake/index.html",
+    "source": "5-3-PathFollowingComplex/index.html",
+    "sha256": "c4b720af505df8d48c94fdedb70b98336e973c5189947d0b514869b2394860e6"
+  },
+  {
+    "file": "games/snake/jsconfig.json",
+    "source": "5-3-PathFollowingComplex/jsconfig.json",
+    "sha256": "2dbc50abf2c9f698fe929238ff235aaf4e122a0b54d99c6e2acfee5292e2b6d4"
+  },
+  {
+    "file": "games/snake/path.js",
+    "source": "5-3-PathFollowingComplex/path.js",
+    "sha256": "a966e120cd1fbb2571709a573d0cded21514ea649aa78b9d06f658cc6dab0ed4"
+  },
+  {
+    "file": "games/snake/pathSnake.js",
+    "source": "5-3-PathFollowingComplex/pathSnake.js",
+    "sha256": "cbc3713a109daa12693d81e3dfa21f4ea5b3c47e272e9c5ecc3dddda79f845db"
+  },
+  {
+    "file": "games/snake/README.md",
+    "source": "5-3-PathFollowingComplex/README.md",
+    "sha256": "e87274e840e0a376c78ecbd369a1e50005bdd80622722d8573032e68a63f2d10"
+  },
+  {
+    "file": "games/snake/sketch.js",
+    "source": "5-3-PathFollowingComplex/sketch.js",
+    "sha256": "a7613c03285bd29bf39653ca283b5ef7dce9b48817984452f78d145298e9d89b"
+  },
+  {
+    "file": "games/snake/snake.js",
+    "source": "5-3-PathFollowingComplex/snake.js",
+    "sha256": "646f547c9bd37cfdb70d2c8333ad956730530e31ff2e7bd2a1c430777075aa2a"
+  },
+  {
+    "file": "games/snake/snakeArrival.js",
+    "source": "5-3-PathFollowingComplex/snakeArrival.js",
+    "sha256": "8e22a6ec139f4e6dcd57d6d882f0fdcfe3a2bb51993a5ecaaee6bcf0c1e723cc"
+  },
+  {
+    "file": "games/snake/snakePathFollowing.js",
+    "source": "5-3-PathFollowingComplex/snakePathFollowing.js",
+    "sha256": "a30c86f507ac94f139baa87c35e8c4fb0818796f8a2485e4b7567c9f368ec9dd"
+  },
+  {
+    "file": "games/snake/snakeRing.js",
+    "source": "5-3-PathFollowingComplex/snakeRing.js",
+    "sha256": "90232fccec5a0316d9190f82e8598253b84b868d8759a550b27a218a49418da3"
+  },
+  {
+    "file": "games/snake/snakeSegment.js",
+    "source": "5-3-PathFollowingComplex/snakeSegment.js",
+    "sha256": "5a12c2d9e9905fc290a79e5aea8eeed577b77dfd0e3c367489da9fa5d601e77c"
+  },
+  {
+    "file": "games/snake/snakeSeparation.js",
+    "source": "5-3-PathFollowingComplex/snakeSeparation.js",
+    "sha256": "4d35170bcb64b809804ec063ed03c948dc15b0be6d2cd8900d629d20da152cdc"
+  },
+  {
+    "file": "games/snake/style.css",
+    "source": "5-3-PathFollowingComplex/style.css",
+    "sha256": "e0786b42fbd5030bcb1b86aef8957cc0e4cf0847ea6c5722640e8bf394689357"
+  },
+  {
+    "file": "games/snake/vehicle.js",
+    "source": "5-3-PathFollowingComplex/vehicle.js",
+    "sha256": "a13b9ef7092ef2e15839f253a18c79a41b0530ac53d46bb4a6669a29d0ca9b4b"
+  },
+  {
+    "file": "games/snake/libraries/p5.min.js",
+    "source": "5-3-PathFollowingComplex/libraries/p5.min.js",
+    "sha256": "e358e14c1c032fda4688e91cc62b0d9b2add116ef1ad1b619f3021107d7bd79d"
+  },
+  {
+    "file": "games/snake/libraries/p5.sound.min.js",
+    "source": "5-3-PathFollowingComplex/libraries/p5.sound.min.js",
+    "sha256": "53b7c5243c249f47462dfcfcf6ab229c3dabf23ac900f3ecaa26a39e8488bfe2"
+  },
+  {
+    "file": "games/snake/tests/snake.test.mjs",
+    "source": "5-3-PathFollowingComplex/tests/snake.test.mjs",
+    "sha256": "2fcdcbc3409b0ab2fef3b4d3ba7d9063c09d74f5e23f108dc7b99f34fcd0f014"
+  }
+]

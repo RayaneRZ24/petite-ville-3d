@@ -4,6 +4,28 @@
     const city = new CityMap3D();
     const world = new World3D(Math.random,city.route);
     const view = new Scene3D(document.getElementById('scene'), world);
+    const neuralLab=view.neuralLab=new NeuralLabPortal3D(view);
+    const venueLife=new VenueLife3D(world,view,neuralLab);
+    const attractions=view.attractions=new Attractions3D(view,neuralLab);
+    const cityAudio=new CityAudio3D();
+    const audioToggle=document.getElementById('city-audio-toggle');
+    const audioStatus=document.getElementById('city-audio-status');
+    audioToggle.addEventListener('click',async()=>{
+      audioToggle.disabled=true;
+      try{if(cityAudio.enabled)cityAudio.disable();else await cityAudio.enable();
+        audioToggle.textContent=cityAudio.enabled?'Couper les sons de la ville':'Activer les sons de la ville';
+        audioToggle.setAttribute('aria-pressed',String(cityAudio.enabled));
+        audioStatus.textContent=cityAudio.enabled?'Enregistrements actifs · ambiance de rue et conversations.':'Ambiance coupée.';
+      }catch(error){audioStatus.textContent='Son indisponible : '+error.message;}
+      finally{audioToggle.disabled=false;}
+    });
+    document.getElementById('city-audio-volume').addEventListener('input',event=>{
+      cityAudio.setVolume(Number(event.target.value)/100);
+      document.getElementById('city-audio-value').value=Math.round(cityAudio.volume*100)+' %';
+    });
+    const suspendAudio=()=>cityAudio.suspend();
+    document.addEventListener('visibilitychange',()=>{if(document.hidden)suspendAudio();});
+    window.addEventListener('pagehide',suspendAudio);
     const vehicleSelect = document.getElementById('vehicle-select');
     let listedVehicles = -1;
     function refreshVehicleList() {
@@ -93,6 +115,7 @@
     document.getElementById('start-mission').addEventListener('click',startMission);
     document.getElementById('bus-doors').addEventListener('click',()=>{world.mission.openDoors();view.renderer?.domElement.focus();});
     window.addEventListener('keydown', event => {
+      if (neuralLab.opened || attractions.opened || attractions.ride) return;
       if (event.repeat || event.ctrlKey || event.metaKey || event.altKey) return;
       const target = document.activeElement;
       if (target?.isContentEditable || ['INPUT', 'SELECT', 'TEXTAREA', 'BUTTON'].includes(target?.tagName)) return;
@@ -114,8 +137,8 @@
       }
     });
     window.addEventListener('resize', () => view.resize());
-    // Barrages latéraux : conserver un passage libre sur la chaussée élargie.
-    for (const index of [4, 15, 26, 37, 48, 59]) {
+    // Trois postes fixes sur des portions droites, hors des carrefours et virages.
+    for (const index of [8, 24, 40]) {
       const spawn = world.circuit.spawn(index);
       const offset = 1.6;
       spawn.point.add(new YUKA.Vector3(spawn.direction.z * offset, 0, -spawn.direction.x * offset));
@@ -131,14 +154,17 @@
     let previous = performance.now();
     document.addEventListener('visibilitychange', () => { previous = performance.now(); });
     function animate(now) {
-      if (!paused && !document.hidden) world.update((now - previous) / 1000);
+      const elapsed=(now-previous)/1000;
+      if (!paused && !document.hidden && !neuralLab.opened && !attractions.opened) {world.update(elapsed);venueLife.update(elapsed);}
+      attractions.update(elapsed);
+      cityAudio.update(elapsed,world,view.camera,!paused&&!document.hidden&&!neuralLab.opened&&!attractions.opened,venueLife.visitors);
       previous = now;
       refreshVehicleList();
-      view.render(debug);
+      if (!neuralLab.opened && !attractions.opened) view.render(debug);
       requestAnimationFrame(animate);
     }
     // Permet aux tests de vérifier le vrai moteur et le vrai rendu, sans API réseau.
-    window.pathFollowing3D = { world, view, get debug() { return debug; }, get paused() { return paused; } };
+    window.pathFollowing3D = { world, view, neuralLab, venueLife, attractions, cityAudio, get debug() { return debug; }, get paused() { return paused; } };
     requestAnimationFrame(animate);
   } catch (exception) {
     error.hidden = false;

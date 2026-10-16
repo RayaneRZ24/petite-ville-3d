@@ -99,6 +99,9 @@ class World3D {
       throw new RangeError('Un obstacle doit avoir une position finie et un rayon positif.');
     }
     const frame = this.circuit.frameAt(position);
+    // Les barrages de contrôle de la ville sont limités à trois.
+    // Les barricades temporaires du braquage restent gérées par CityIncident3D.
+    if (this.city && this.barriers.length >= 3) return null;
     // Refuser une création qui ferait apparaître le barrage sur une voiture existante.
     const officerPosition = position.clone().add(frame.normal.clone().multiplyScalar(radius + .55));
     if (this.traffic.some(car => {

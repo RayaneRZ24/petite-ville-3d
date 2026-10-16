@@ -156,7 +156,9 @@ class Scene3D {
   addObstacle(entity) {
     const status = document.getElementById('placement-status');
     if (!entity) {
-      if (status) status.textContent = 'Emplacement trop proche d’un véhicule : choisis un espace libre.';
+      if (status) status.textContent = this.world.city && this.world.barriers.length >= 3
+        ? 'Maximum atteint : les trois postes de contrôle sont déjà installés.'
+        : 'Emplacement trop proche d’un véhicule : choisis un espace libre.';
       return;
     }
     if (status) status.textContent = '';
@@ -282,6 +284,8 @@ class Scene3D {
       const ndc = new THREE.Vector2((event.clientX - rect.left) / rect.width * 2 - 1, -(event.clientY - rect.top) / rect.height * 2 + 1);
       const ray = new THREE.Raycaster();
       ray.setFromCamera(ndc, this.camera);
+      if (this.attractions?.pick(ray)) return;
+      if (this.neuralLab?.pick(ray)) { this.neuralLab.open(); return; }
       if (!event.shiftKey) {
         const subject = this.pickSubject(ray);
         if (subject) {
@@ -434,6 +438,7 @@ class Scene3D {
       this.flockLinks.geometry = new THREE.BufferGeometry().setFromPoints(links);
     }
     this.mirrorViews.update(dt);
+    this.attractions?.updateCamera(dt);
     this.renderer.render(this.scene, this.camera);
   }
 }

@@ -62,7 +62,9 @@ class CityView3D {
     const shelter=new THREE.Mesh(new THREE.BoxGeometry(3.8,.15,1.5),new THREE.MeshStandardMaterial({color:'#207fad'}));shelter.position.set(0,1.8,-.6);group.add(shelter);
     const bench=new THREE.Mesh(new THREE.BoxGeometry(2.6,.15,.45),this.view.black);bench.position.set(0,.5,-.6);group.add(bench);
     group.position.copy(entity.platform);group.quaternion.copy(entity.rotation);this.group.add(group);
-    const bay=new THREE.Mesh(new THREE.RingGeometry(.9,1.15,32),new THREE.MeshBasicMaterial({color:'#ffe36d',side:THREE.DoubleSide}));bay.rotation.x=-Math.PI/2;bay.position.set(entity.position.x,.21,entity.position.z);this.group.add(bay);
+    // Les routes se croisent à y=.21 et les traits atteignent y=.2525.
+    // Détacher le marquage du sol évite le conflit de profondeur (z-fighting).
+    const bay=new THREE.Mesh(new THREE.RingGeometry(.9,1.15,32),new THREE.MeshBasicMaterial({color:'#ffe36d',side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1}));bay.rotation.x=-Math.PI/2;bay.position.set(entity.position.x,.265,entity.position.z);this.group.add(bay);
     this.stopMarkers.set(entity,bay);
   }
   addPassenger(entity) {

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "traffic",
+    "file": "traffic.ogg",
+    "source": "https://commons.wikimedia.org/wiki/File:Sunday_in_the_city_street_noise3.ogg",
+    "download": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Sunday_in_the_city_street_noise3.ogg",
+    "author": "cori",
+    "license": "Public domain",
+    "sha256": "084246f317e997061cc2714d7932173802b21f596ebaf9da8d41d076dee6750f",
+    "bytes": 3916064
+  },
+  {
+    "name": "crowd",
+    "file": "crowd.ogg",
+    "source": "https://commons.wikimedia.org/wiki/File:Festival_concert_people_crowd.ogg",
+    "download": "https://upload.wikimedia.org/wikipedia/commons/1/15/Festival_concert_people_crowd.ogg",
+    "author": "stephan",
+    "license": "Public domain",
+    "sha256": "704b68f75b3f6885abfb35173c8b61aa34fc42c6b694b371e848ce47d045c13c",
+    "bytes": 1821225
+  },
+  {
+    "name": "siren",
+    "file": "siren.ogg",
+    "source": "https://commons.wikimedia.org/wiki/File:American_police_siren_i.ogg",
+    "download": "https://upload.wikimedia.org/wikipedia/commons/a/ae/American_police_siren_i.ogg",
+    "author": "lezer",
+    "license": "Public domain",
+    "sha256": "03f0bc628c066261778dc4b95d1916cf5df04149c69364b1a0eeed5ad279a82a",
+    "bytes": 400043
+  },
+  {
+    "name": "horn",
+    "file": "horn.mp3",
+    "source": "https://freesound.org/people/keweldog/sounds/182474/",
+    "download": "https://cdn.freesound.org/previews/182/182474_3153523-hq.mp3",
+    "author": "keweldog",
+    "license": "CC0-1.0",
+    "sha256": "9de748b259d851eb3e3de80df0e7f4f4f99fb9842bf65f7b26f8a5bbe7eae0e0",
+    "bytes": 98930
+  }
+]

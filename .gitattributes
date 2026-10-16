@@ -7,3 +7,7 @@
 *.md text eol=lf
 libraries/3d/*.js -text -whitespace
 tests/fixtures/*.js -text -whitespace
+
+# Preserve imported teaching sources and their provenance hashes.
+games/seek/** -text -whitespace
+games/snake/** -text -whitespace

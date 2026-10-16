@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Petite ville 3D · Mission bus et drones</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
     <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -61,12 +62,50 @@
     <script src="3d/cityLifeView3d.js"></script>
     <script src="3d/cityActorsView3d.js"></script>
     <script src="3d/scene3d.js"></script>
+    <script src="3d/venueProp3d.js"></script>
+    <script src="3d/stadiumVenueView3d.js"></script>
+    <script src="3d/venueCar3d.js"></script>
+    <script src="3d/venueVisitor3d.js"></script>
+    <script src="3d/venueLife3d.js"></script>
+    <script src="3d/arcadeCabinet3d.js"></script>
+    <script src="arcade/ArcadeTrack.js"></script>
+    <script src="arcade/NeuralPolicy.js"></script>
+    <script src="arcade/ArcadeDrive.js"></script>
+    <script src="arcade/ArcadeRacer.js"></script>
+    <script src="arcade/ArcadeGhostDrive.js"></script>
+    <script src="arcade/ArcadeGhost.js"></script>
+    <script src="arcade/BalloonDrift.js"></script>
+    <script src="arcade/BalloonTarget.js"></script>
+    <script src="arcade/ArcadeSession.js"></script>
+    <script src="arcade/ArcadeView.js"></script>
+    <script src="neuro/savedCampaignData.js"></script>
+    <script src="arcade/BehaviorArcadeCatalog.js"></script>
+    <script src="arcade/EmbeddedBehaviorGame.js"></script>
+    <script src="3d/attractions3d.js"></script>
+    <script src="3d/learningCircuit3d.js"></script>
+    <script src="3d/neuralLabPortal3d.js"></script>
+    <script src="3d/cityAudio3d.js"></script>
     <script src="3d/app3d.js" defer></script>
   </head>
   <body class="mode-3d">
+    <button id="open-neural-lab" type="button">Circuit neuronal · entraînement & courses</button>
+    <section id="neural-dialog" role="dialog" aria-modal="true" aria-label="Laboratoire du circuit neuronal" hidden>
+      <button id="close-neural-lab" type="button" aria-label="Fermer le laboratoire et revenir à la ville">✕ Retour à la ville</button>
+      <iframe id="neural-frame" title="Circuit 3D : entraînement neuronal et courses" allow="fullscreen"></iframe>
+    </section>
+    <button id="open-arcade" type="button">🎮 Jouer aux arcades</button><button id="exit-wheel" type="button" hidden>Descendre de la grande roue · Échap</button>
     <button id="settings3d-toggle" type="button" aria-controls="controls" aria-expanded="true">☰ Réglages</button>
     <aside id="controls" aria-label="Réglages des bus et des nuées">
       <strong>Ville 3D · bus et nuées</strong>
+      <details open class="flock-controls"><summary>Ambiance sonore</summary>
+        <button id="city-audio-toggle" type="button" aria-pressed="false">Activer les sons de la ville</button>
+        <label for="city-audio-volume">Volume <output id="city-audio-value">35 %</output></label>
+        <input id="city-audio-volume" type="range" min="0" max="100" value="35" step="1">
+        <p id="city-audio-status" role="status">Vrais enregistrements : rue, conversations, klaxon et sirènes.</p>
+      </details><div class="actions"><button id="ride-wheel" type="button">Monter dans la grande roue</button></div>
+      <div class="actions"><button id="locate-arcades" type="button">Voir les 8 bornes</button></div>
+      <div class="actions"><button id="locate-neural-circuit" type="button">Voir le circuit neuronal</button></div>
+      <p>Le stade se trouve à côté de la fête foraine. Clique sur sa piste ou son panneau pour ouvrir le laboratoire d’entraînement.</p>
       <details open class="flock-controls">
         <summary>Commerces · intervention</summary>
         <p>Trois braqueurs · braquage de 30 s · trois voitures de police · barrages et déviation du trafic · poursuite vers la sortie Est.</p>
@@ -121,6 +160,15 @@
       <span id="bus-count" role="status">1 bus</span>
       <span id="placement-status" role="status"></span>
     </aside>
+
+    <section id="arcade-panel" role="dialog" aria-modal="true" aria-label="Jeux et comportements : huit bornes" hidden>
+      <header><div><small>FÊTE FORAINE / TES JEUX & ARCADES</small><h1 id="arcade-title">ARCADES DES COMPORTEMENTS</h1></div><button id="close-arcade" type="button">Retour à la ville · Échap</button></header>
+      <nav id="behavior-arcade-menu" aria-label="Choisir une borne"></nav>
+      <div class="behavior-toolbar"><span id="arcade-description"></span><button id="arcade-settings" type="button">Réglages du jeu</button><button id="arcade-action" type="button" hidden>+ Serpent · T</button><button id="arcade-restart" type="button">Recommencer</button><button id="arcade-pause" type="button" aria-pressed="false">Pause</button></div>
+      <p id="arcade-loading" role="status">Choisis une borne pour jouer.</p>
+      <iframe id="behavior-arcade-frame" title="Jeu de steering behaviors" allow="autoplay" tabindex="0"></iframe>
+      <p class="behavior-help">Chaque borne reprend ton jeu original avec ses réglages. D : debug · Serpent : T pour en ajouter, glisser pour créer des véhicules · Échap : retour (ferme d’abord les réglages ouverts).</p>
+    </section>
     <main id="scene" aria-label="Simulation 3D de voitures, bus et nuées de drones"></main>
     <div id="mission-hud" role="status"><strong>Ville vivante · 8 quartiers</strong><span id="mission-status">M : mission bus · V : caméra drone · N : drone suivant</span></div>
     <p id="scene-error" role="alert" hidden></p>

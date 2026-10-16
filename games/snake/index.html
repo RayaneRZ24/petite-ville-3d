@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Suivi de chemin — serpents</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="path.js"></script>
+    <script src="vehicle.js"></script>
+    <script src="snakeArrival.js"></script>
+    <script src="snakeRing.js"></script>
+    <script src="snake.js"></script>
+    <script src="snakeSeparation.js"></script>
+    <script src="pathSnake.js"></script>
+    <script src="sketch.js"></script>
+  <link rel="stylesheet" href="../arcadeBridge.css">
+    <script src="../arcadeBridge.js" defer></script>
+  </head>
+  <body data-arcade-engine="snake">
+    <aside id="controls" aria-label="Réglages des serpents">
+      <strong>Suivi de chemin · serpents</strong>
+      <label for="snake-follow">Poids du suivi <output id="follow-value">2.0</output></label>
+      <span id="follow-control"></span>
+      <label for="snake-separation">Poids de la séparation <output id="separation-value">2.5</output></label>
+      <span id="separation-control"></span>
+      <label for="snake-wander">Poids du wander <output id="wander-value">0.5</output></label>
+      <span id="wander-control"></span>
+      <p><kbd>T</kbd> Ajouter un serpent · <kbd>D</kbd> Debug<br>Glisser sur le canvas : ajouter des véhicules.</p>
+      <span id="snake-count" role="status">1 serpent</span>
+    </aside>
+    <main id="scene"></main>
+  </body>
+</html>

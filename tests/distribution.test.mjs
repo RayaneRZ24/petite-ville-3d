@@ -2,6 +2,13 @@ import test from 'node:test';import assert from 'node:assert/strict';
 import {readFileSync,existsSync,readdirSync} from 'node:fs';import {fileURLToPath} from 'node:url';import {join,resolve,relative} from 'node:path';
 import {createServer,projectRoot} from '../scripts/serve.mjs';
 
+test('serveur : effet Monster Kill M4A lisible avec son type audio et une plage partielle',async()=>{
+ const server=createServer();await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+ try{const url='http://127.0.0.1:'+server.address().port+'/games/seek/assets/monster-kill.m4a';
+  const response=await fetch(url,{headers:{Range:'bytes=0-15'}});assert.equal(response.status,206);assert.equal(response.headers.get('content-type'),'audio/mp4');assert.equal((await response.arrayBuffer()).byteLength,16);
+ }finally{await new Promise(resolve=>server.close(resolve));}
+});
+
 test('distribution : chaque ressource HTML est locale et présente, sans lien vers la version p5',()=>{
  const html=readFileSync(new URL('../index.html',import.meta.url),'utf8');
  for(const [,path] of html.matchAll(/(?:src|href)="([^"]+)"/g)){assert.ok(!/^(?:https?:|\/\/|\.\.\/)/.test(path),path);assert.ok(existsSync(join(projectRoot,path)),path);}
