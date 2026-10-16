@@ -1,4 +1,4 @@
-# Petite ville 3D — comportements autonomes et apprentissage neuronal
+# Petite ville 3D — Steering Behaviors et apprentissage neuronal
 
 > **Pour jouer dans de bonnes conditions :** si vous utilisez la version en ligne, une connexion Internet stable est recommandée pour charger correctement toutes les ressources. Une connexion lente ou instable peut allonger ou interrompre le chargement. Une fois les ressources chargées, la fluidité et les FPS dépendent surtout des performances de l’appareil et de son processeur graphique. Après téléchargement, le jeu peut aussi être lancé localement sans connexion Internet.
 
