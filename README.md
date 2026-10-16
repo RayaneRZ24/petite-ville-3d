@@ -1,5 +1,7 @@
 # Petite ville 3D — comportements autonomes et apprentissage neuronal
 
+> **Pour jouer dans de bonnes conditions :** si vous utilisez la version en ligne, une connexion Internet stable est recommandée pour charger correctement toutes les ressources. Une connexion lente ou instable peut allonger ou interrompre le chargement. Une fois les ressources chargées, la fluidité et les FPS dépendent surtout des performances de l’appareil et de son processeur graphique. Après téléchargement, le jeu peut aussi être lancé localement sans connexion Internet.
+
 Projet réalisé dans le cadre du module **IA générative du master IA2 en double diplomation avec l’Université Côte d’Azur**. Une ville interactive réunit les steering behaviors étudiés en cours, des missions et un circuit de voitures pilotées par réseaux de neurones.
 
 **Pour découvrir et évaluer le projet : lancer le jeu, puis suivre le parcours de 15 minutes ci-dessous.** Les boutons cités portent les mêmes noms dans l’interface. Toutes les bibliothèques, les jeux intégrés, les sons et les cerveaux de démonstration sont inclus dans ce dépôt.
