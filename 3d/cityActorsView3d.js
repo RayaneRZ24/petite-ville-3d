@@ -6,7 +6,10 @@ class CityActorsView3D {
     const canvas=document.createElement('canvas');canvas.width=canvas.height=256;const c=canvas.getContext('2d');c.fillStyle='#c9baa3';c.fillRect(0,0,256,256);
     for(let y=0;y<256;y+=16)for(let x=0;x<256;x+=32){c.fillStyle=(x/32+y/16)%3?'#c5b79f':'#d5c9b5';c.fillRect(x+(y%32?16:0),y,30,14);}
     const texture=new THREE.CanvasTexture(canvas);texture.wrapS=texture.wrapT=THREE.RepeatWrapping;texture.repeat.set(36,36);texture.colorSpace=THREE.SRGBColorSpace;
-    const ground=new THREE.Mesh(new THREE.PlaneGeometry(280,240),new THREE.MeshStandardMaterial({map:texture,roughness:.97}));ground.rotation.x=-Math.PI/2;ground.position.set(15,-.012,0);ground.receiveShadow=true;group.add(ground);
+    // Une seule surface : deux plans espacés de 8 mm clignotaient en vue éloignée.
+    // Habiller le sol existant conserve sa profondeur et évite le z-fighting.
+    texture.anisotropy=this.view.renderer.capabilities.getMaxAnisotropy();
+    const ground=this.view.ground;ground.material.map=texture;ground.material.color.set('#ffffff');ground.material.roughness=.97;ground.material.needsUpdate=true;
     const asphalt=new THREE.Mesh(new THREE.BoxGeometry(60,.16,8.4),new THREE.MeshStandardMaterial({color:'#30343c',roughness:.94}));asphalt.position.set(83,.08,0);asphalt.receiveShadow=true;group.add(asphalt);
     const stripe=new THREE.MeshStandardMaterial({color:'#fff2cd'});
     for(let x=59;x<112;x+=4){const mark=new THREE.Mesh(new THREE.BoxGeometry(2,.015,.12),stripe);mark.position.set(x,.18,0);group.add(mark);}

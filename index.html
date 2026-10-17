@@ -162,7 +162,7 @@
     </aside>
 
     <section id="arcade-panel" role="dialog" aria-modal="true" aria-label="Jeux et comportements : huit bornes" hidden>
-      <header><div><small>FÊTE FORAINE / TES JEUX & ARCADES</small><h1 id="arcade-title">ARCADES DES COMPORTEMENTS</h1></div><button id="close-arcade" type="button">Retour à la ville · Échap</button></header>
+      <header><div><small>FÊTE FORAINE / MES JEUX & ARCADES</small><h1 id="arcade-title">ARCADES DES COMPORTEMENTS</h1></div><button id="close-arcade" type="button">Retour à la ville · Échap</button></header>
       <nav id="behavior-arcade-menu" aria-label="Choisir une borne"></nav>
       <div class="behavior-toolbar"><span id="arcade-description"></span><button id="arcade-settings" type="button">Réglages du jeu</button><button id="arcade-action" type="button" hidden>+ Serpent · T</button><button id="arcade-restart" type="button">Recommencer</button><button id="arcade-pause" type="button" aria-pressed="false">Pause</button></div>
       <p id="arcade-loading" role="status">Choisis une borne pour jouer.</p>
@@ -170,7 +170,7 @@
       <p class="behavior-help">Chaque borne reprend ton jeu original avec ses réglages. D : debug · Serpent : T pour en ajouter, glisser pour créer des véhicules · Échap : retour (ferme d’abord les réglages ouverts).</p>
     </section>
     <main id="scene" aria-label="Simulation 3D de voitures, bus et nuées de drones"></main>
-    <div id="mission-hud" role="status"><strong>Ville vivante · 8 quartiers</strong><span id="mission-status">M : mission bus · V : caméra drone · N : drone suivant</span></div>
+    <div id="mission-hud" role="status" hidden><strong>Mission bus</strong><span id="mission-status"></span></div>
     <p id="scene-error" role="alert" hidden></p>
   </body>
 </html>

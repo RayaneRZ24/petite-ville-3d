@@ -77,6 +77,9 @@ class CityView3D {
     for(const {entity,group} of this.passengerViews)group.visible=entity.queueIndex<entity.stop.waiting;
     for(const stop of this.city.stops)this.stopMarkers.get(stop).material.color.set(mission?.stop===stop&&['driving','boarding'].includes(mission.state)?'#55ffbb':'#ffe36d');
     const hud=document.getElementById('mission-status');
-    if(hud&&mission?.bus)hud.textContent=`${mission.message} · ${mission.onboard}/${mission.capacity} à bord · ${mission.delivered} livrés · Score ${mission.score} · ${Math.round(mission.bus.getSpeed()*10)} km/h`;
+    const panel=document.getElementById('mission-hud');
+    const showMission=Boolean(mission?.bus&&['driving','boarding','complete'].includes(mission.state));
+    if(panel)panel.hidden=!showMission;
+    if(hud)hud.textContent=showMission?`${mission.message} · ${mission.onboard}/${mission.capacity} à bord · ${mission.delivered} livrés · Score ${mission.score} · ${Math.round(mission.bus.getSpeed()*10)} km/h`:'';
   }
 }

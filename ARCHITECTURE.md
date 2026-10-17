@@ -77,3 +77,6 @@ Pause, masquage et dialogues arrêtent les quatre lecteurs, conservent le temps 
 ## Retour des deux bornes classiques
 
 `games/classic/ClassicArcade` héberge le moteur d’origine dans le même iframe exclusif que les jeux p5. La borne `race` propose course chrono et défi `ghost`, la borne `balloons` propose le tir aux ballons. Les contrôles clavier/tactiles, scores, combos et records `city-arcade-records` sont conservés. Les messages utilisent les mêmes contrôles de fenêtre, identifiant et session ; `behavior-arcade-state` synchronise la pause déclenchée au clavier avec le bouton parent. Recommencer conserve le mode natif sélectionné. À la fermeture, l’animation est annulée et l’iframe déchargé. Huit empreintes solides restent espacées devant la fête foraine. Aucun changement aux forces ni à la locomotion des jeux.
+
+
+Le sol urbain utilise une seule surface de Scene3D, habillée par CityActorsView3D avec mipmaps et filtrage anisotrope. Aucun second plan vert ne concurrence le pavage dans les vues éloignées. CityView3D affiche le panneau Mission bus uniquement pendant une tournée ou son bilan final ; aucun bandeau de mission ne reste affiché au repos.

@@ -49,10 +49,11 @@ class Scene3D {
     Object.assign(sun.shadow.camera, { left: -80, right: 80, top: 80, bottom: -80, near: 1, far: 240 });
     sun.shadow.normalBias = .03;
     this.scene.add(sun);
-    const ground = new THREE.Mesh(new THREE.PlaneGeometry(240, 240),
+    const ground = this.ground = new THREE.Mesh(new THREE.PlaneGeometry(world.city ? 280 : 240, 240),
       new THREE.MeshStandardMaterial({ color: world.city ? '#64836b' : '#df202b', roughness: 1 }));
     ground.rotation.x = -Math.PI / 2;
     ground.position.y = -.02;
+    if(world.city)ground.position.x=15;
     ground.receiveShadow = true;
     this.scene.add(ground);
     if(world.city){this.cityView=new CityView3D(this,world.city);this.cityLife=new CityLifeView3D(this,world.city);this.atmosphere=new CityAtmosphere3D(this.scene);this.cityActors=new CityActorsView3D(this);}
